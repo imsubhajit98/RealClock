@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Project</title>
+    <link rel="stylesheet" href="practice-1.css">
+    
+</head>
+<body>
+    <div class="MyWatch">
+        <!-- <span class="H"></span>
+        <span class="M"></span>
+        <span class="date"></span> -->
+        <div class="time">
+            <div class="t hour"></div>
+            <div class="t min"></div>
+            <div class="t sec"></div>
+            <div class="t m"></div>
+        </div>
+        <div class="date">
+            <div class="d today"></div>
+            <div class="d day"></div>
+            <div class="d month"></div>
+            <div class="d year"></div>
+            
+        </div>
+    </div>
+    
+    <script>
+        function myTime(){
+            var myDate=new Date();
+
+            var hr;
+            //  =(myDate.getHours() < 10) ? "0" + myDate.getHours() : myDate.getHours();
+            var min =(myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
+            var sec =(myDate.getSeconds() < 10) ? "0" + myDate.getSeconds() : myDate.getSeconds();
+            var M = (myDate.getHours() >= 12) ? "PM" : "AM";
+            
+
+            if(myDate.getHours() == 0){
+                hr=12;
+            }else if(myDate.getHours() > 12){
+                hr=myDate.getHours() - 12;
+            }
+            else{
+                hr = myDate.getHours();
+            }
+            hr =(myDate.getHours() < 10) ? "0" + myDate.getHours() : myDate.getHours();
+            var currentTime= hr + ":" + min + ":" + sec + ":";
+
+            // document.getElementsByClassName("H")[0].innerHTML=currentTime;
+            // document.getElementsByClassName("M")[0].innerHTML= M;
+
+            document.getElementsByClassName("hour")[0].innerHTML=hr;
+            document.getElementsByClassName("min")[0].innerHTML=min;
+            document.getElementsByClassName("sec")[0].innerHTML=sec;
+            document.getElementsByClassName("m")[0].innerHTML=M;
+
+
+
+            var myDay=["Sunday","Monday","Tuesday","Wedenesday","Thursday","Friday","Saturday"];
+            var myMonth=["January","February","March","April","May","June","August","September","October","November","December"]
+            var day = (myDate.getDate() < 10) ? "0"+myDate.getDate() : myDate.getDate();
+        
+            // var currentDate = myDay[myDate.getDay()] + "," + myMonth[myDate.getMonth()] + " " + day+" "+myDate.getFullYear() ;
+            // document.getElementsByClassName("date")[0].innerHTML=currentDate;
+
+            document.getElementsByClassName("today")[0].innerHTML=myDay[myDate.getDay()];
+            document.getElementsByClassName("day")[0].innerHTML=day;
+            document.getElementsByClassName("month")[0].innerHTML=myMonth[myDate.getMonth()];
+            document.getElementsByClassName("year")[0].innerHTML=myDate.getFullYear();
+        }
+
+        myTime();
+        setInterval(function(){
+            myTime();
+        },1000);
+    </script>
+</body>
+</html>
